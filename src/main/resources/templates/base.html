@@ -1,0 +1,16 @@
+<!-- <div th:fragment="parent(x,y)">
+    <h1>This is parent fragment</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, reiciendis.</p>
+    <h3 >value of x <span data-th-text="${x}"></span></h3>
+    <h3> value of y <span data-th-text="${x}"></span></h3>
+    
+</div> -->
+
+<div th:fragment="secondFra(content)">
+    <h1>This is parent fragment</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, reiciendis.</p>
+    <h3 >value of x <span data-th-text="${x}"></span></h3>
+    <h3> value of y <span data-th-text="${x}"></span></h3>
+    
+    <div th:replace="${content}"></div>
+</div>

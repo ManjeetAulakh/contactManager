@@ -1,0 +1,66 @@
+# === Java & Spring Boot ===
+target/
+*.class
+*.jar
+*.war
+*.log
+*.tmp
+*.bak
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+mvnw
+mvnw.cmd
+
+# Gradle (if used accidentally)
+.gradle/
+build/
+
+# === IDEs ===
+# STS
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+
+# IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+
+# === OS Files ===
+.DS_Store
+Thumbs.db
+
+# === Node/Tailwind/Themlep ===
+node_modules/
+dist/
+build/
+.env
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+tailwind.config.js
+postcss.config.js
+
+# Keep target and build folders only inside source dirs if needed
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service</title>
+</head>
+
+<body>
+    <h1>This is about page content</h1>
+    <hr />
+
+    <!-- can also pass content -->
+
+    <div th:insert="~{base :: secondFra(~{::#main})}">
+        <section id="main">
+            <h1>this is dyaminc passed to base parent framgment</h1>
+        </section>
+        <section class="second">
+            <h1>this is dyaminc passed to base parent framgment</h1>
+        </section>
+    </div>
+
+</body>
+
+</html>
