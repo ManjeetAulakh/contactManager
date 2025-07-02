@@ -1,0 +1,70 @@
+<nav data-th-fragment="navbar"
+  class="bg-white dark:bg-gray-900 shadow-md fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-screen-xl mx-auto flex items-center justify-between px-6 py-4">
+
+    <!-- Logo -->
+    <a th:href="@{/}" class="flex items-center space-x-2">
+      <img th:src="@{/images/contactlogo.png}" style="height: 32px; max-width: 32px; object-fit: contain;" alt="Logo">
+      <span class="text-xl sm:text-2xl font-bold text-blue-700 dark:text-white">SCM 2.0</span>
+    </a>
+
+    <!-- Desktop Nav Links -->
+    <div class="hidden md:flex flex-1 justify-center">
+      <ul class="flex flex-row space-x-8 font-medium text-base text-gray-700 dark:text-gray-300">
+        <li><a th:href="@{/home}" class="px-2 py-2 hover:text-blue-700 dark:hover:text-blue-400 transition">Home</a>
+        </li>
+        <li><a th:href="@{/about}" class="px-2 py-2 hover:text-blue-700 dark:hover:text-blue-400 transition">About</a>
+        </li>
+        <li><a th:href="@{/services}"
+            class="px-2 py-2 hover:text-blue-700 dark:hover:text-blue-400 transition">Services</a></li>
+        <li><a th:href="@{/contact}"
+            class="px-2 py-2 hover:text-blue-700 dark:hover:text-blue-400 transition">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Desktop Buttons + Hamburger -->
+    <div class="flex items-center gap-3">
+      <a th:href="@{/register}"
+        class="hidden md:block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow text-center">
+        Sign Up
+      </a>
+
+      <a th:href="@{/login}"
+        class="hidden md:block bg-gray-100 hover:bg-gray-200 text-blue-700 px-4 py-2 rounded-md text-sm font-medium shadow dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-gray-100 text-center">
+        Login
+      </a>
+
+      <!-- Mobile Hamburger Icon -->
+      <button id="mobile-menu-button" type="button"
+        class="inline-flex items-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-600"
+        aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M1 1h15M1 7h15M1 13h15" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu"
+    class="md:hidden hidden px-6 py-4 bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+    <ul class="flex flex-col space-y-4 font-medium text-gray-700 dark:text-gray-200 text-base">
+      <li><a th:href="@{/home}" class="hover:text-blue-700 dark:hover:text-blue-400 transition">Home</a></li>
+      <li><a th:href="@{/about}" class="hover:text-blue-700 dark:hover:text-blue-400 transition">About</a></li>
+      <li><a th:href="@{/services}" class="hover:text-blue-700 dark:hover:text-blue-400 transition">Services</a></li>
+      <li><a th:href="@{/contact}" class="hover:text-blue-700 dark:hover:text-blue-400 transition">Contact</a></li>
+    </ul>
+
+    <div class="flex flex-col gap-3 mt-6">
+    <a th:href="@{/register}"
+      class="w-full text-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow">
+      Sign Up
+    </a>
+    <a th:href="@{/login}"
+      class="w-full text-center bg-gray-100 hover:bg-gray-200 text-blue-700 px-4 py-2 rounded-md text-sm font-medium shadow dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white">
+      Login
+    </a>
+    </div>
+  </div>
+</nav>

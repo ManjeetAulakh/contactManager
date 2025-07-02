@@ -1,16 +1,47 @@
-<!-- <div th:fragment="parent(x,y)">
-    <h1>This is parent fragment</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, reiciendis.</p>
-    <h3 >value of x <span data-th-text="${x}"></span></h3>
-    <h3> value of y <span data-th-text="${x}"></span></h3>
-    
-</div> -->
+<!DOCTYPE html>
+<html class="dark" lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:fragment="parent(content, title, script)">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title th:replace="${title}">Base Page</title>
 
-<div th:fragment="secondFra(content)">
-    <h1>This is parent fragment</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, reiciendis.</p>
-    <h3 >value of x <span data-th-text="${x}"></span></h3>
-    <h3> value of y <span data-th-text="${x}"></span></h3>
-    
-    <div th:replace="${content}"></div>
-</div>
+  <!-- CSS -->
+  <link rel="stylesheet" th:href="@{/css/output.css}" />
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+</head>
+
+<body>
+
+  <!-- ✅ Navbar Fragment -->
+  <div th:replace="navbar :: navbar"></div>
+
+  <!-- ✅ Dynamic Main Content -->
+  <main class="pt-24 md:pt-28 lg:pt-32">
+    <section th:replace="${content}"></section>
+  </main>
+
+  <!-- ✅ Footer -->
+  <footer class="mt-16 p-4 text-sm">
+    Footer: Code with Manjeet Singh..
+  </footer>
+
+  <!-- ✅ JS -->
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+  <script>
+    const toggleBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (toggleBtn && mobileMenu) {
+      toggleBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  </script>
+
+  <!-- ✅ Dynamic scripts from child -->
+  <div th:replace="${script}"></div>
+
+</body>
+</html>
