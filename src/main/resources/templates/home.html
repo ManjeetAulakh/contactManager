@@ -6,14 +6,11 @@
 
 <head>
     <title>Home page</title>
-</head> 
-<!-- <link rel="stylesheet" data-th-href="@{'/css/output.css'}">
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" /> -->
+</head>
 
 <body>
 
     <section id="content">
-
         <div class=" bg-gray-200 w-1/2 p-4 mx-auto mt-2 flex flex-col space-y-3 justify-center items-center">
             <h1 class="text-2 font-bold" data-th-text="${name}">My Page</h1>
             <p class=" text-xl text-gray-700">Youtube: <span data-th-text="${youtube}"></span></p>
@@ -35,10 +32,16 @@
             </div>
 
         </div>
-
     </section>
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script> -->
+    <div id="script">
+        <script>
+            console.log("home page");
+        </script>
+        <script>
+            console.log("second home page script");
+        </script>
+    </div>
 
 </body>
 

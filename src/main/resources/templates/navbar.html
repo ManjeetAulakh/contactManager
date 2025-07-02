@@ -3,7 +3,7 @@
   <div class="max-w-screen-xl mx-auto flex items-center justify-between px-6 py-4">
 
     <!-- Logo -->
-    <a th:href="@{/}" class="flex items-center space-x-2">
+    <a th:href="@{/home}" class="flex items-center space-x-2">
       <img th:src="@{/images/contactlogo.png}" style="height: 32px; max-width: 32px; object-fit: contain;" alt="Logo">
       <span class="text-xl sm:text-2xl font-bold text-blue-700 dark:text-white">SCM 2.0</span>
     </a>
@@ -24,6 +24,13 @@
 
     <!-- Desktop Buttons + Hamburger -->
     <div class="flex items-center gap-3">
+
+      <button id="theme-toggle"
+        class="flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+        <i id="theme-icon" class="fa-solid fa-moon"></i>
+        <span id="theme-label">Dark</span>
+      </button>
+
       <a th:href="@{/register}"
         class="hidden md:block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow text-center">
         Sign Up
@@ -57,14 +64,14 @@
     </ul>
 
     <div class="flex flex-col gap-3 mt-6">
-    <a th:href="@{/register}"
-      class="w-full text-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow">
-      Sign Up
-    </a>
-    <a th:href="@{/login}"
-      class="w-full text-center bg-gray-100 hover:bg-gray-200 text-blue-700 px-4 py-2 rounded-md text-sm font-medium shadow dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white">
-      Login
-    </a>
+      <a th:href="@{/register}"
+        class="w-full text-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow">
+        Sign Up
+      </a>
+      <a th:href="@{/login}"
+        class="w-full text-center bg-gray-100 hover:bg-gray-200 text-blue-700 px-4 py-2 rounded-md text-sm font-medium shadow dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white">
+        Login
+      </a>
     </div>
   </div>
 </nav>
