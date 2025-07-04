@@ -25,15 +25,15 @@
 <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
 
   <!-- ✅ Navbar Fragment -->
-  <div th:replace="navbar :: navbar"></div>
+  <div th:replace="~{navbar :: navbar}"></div>
 
   <!-- ✅ Dynamic Main Content -->
-  <main class="pt-24 md:pt-28 lg:pt-32">
+<main class="pt-16 md:pt-20 lg:pt-24">
     <section th:replace="${content}"></section>
   </main>
 
   <!-- ✅ Footer -->
-  <footer class="mt-16 p-4 text-sm">
+  <footer class="mt-16 p-4 text-sm dark:bg-green-400">
     Footer: Code with Manjeet Singh..
   </footer>
 

@@ -1,22 +1,120 @@
 <!DOCTYPE html>
-<html lang="en"
-      th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::#script})}"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::#script})}"
+  xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <title>SignUp Page</title>
 </head>
 
 <body>
 
-  <!-- ✅ CONTENT fragment: MUST be outside <body> -->
-  <div id="content">
-    <div class="max-w-screen-md mx-auto py-10 px-4">
-      <h1 class="text-3xl font-bold mb-4 text-blue-700">Welcome to SignUp Page</h1>
-      <p class="text-gray-800 text-base">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, ratione!
-      </p>
+  <section id="content" class="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center">
+    <div
+      class="mx-4 my-8 w-full max-w-md bg-white rounded-lg shadow dark:border dark:bg-gray-800 dark:border-gray-700 p-6">
+      <a href="#" class="flex items-center justify-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+        <img class="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo">
+        SCM 2.0
+      </a>
+      <h1
+        class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center mb-4">
+        Create an account
+      </h1>
+
+      <form data-th-action="@{/do-register}" method="post" class="space-y-4" th:object="${userform}" novalidate>
+
+        <!-- Name -->
+        <div>
+          <label for="name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Your name</label>
+          <input type="text" name="name" id="name" required
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-600 focus:border-blue-600 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+            placeholder="John Doe" th:field="*{name}">
+
+          <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-red-500 text-sm mt-1"></p>
+
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label for="email" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+          <input type="email" name="email" id="email" required
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-600 focus:border-blue-600 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+            placeholder="name@company.com" th:field="*{email}">
+
+          <!-- Validation error for email format or missing -->
+          <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-red-500 text-sm mt-1"></p>
+
+          <!-- Duplicate email error -->
+          <p th:if="${field == 'email'}" th:text="${message}" class="text-red-500 text-sm mt-1"></p>
+
+        </div>
+
+        <!-- Password -->
+        <div>
+          <label for="password" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+          <input type="password" name="password" id="password" required
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-600 focus:border-blue-600 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+            placeholder="••••••••" th:field="*{password}">
+
+          <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-red-500 text-sm mt-1"></p>
+
+        </div>
+
+        <!-- Phone Number -->
+        <div>
+          <label for="phoneNumber" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Phone
+            Number</label>
+
+          <input type="tel" name="phoneNumber" id="phoneNumber" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 
+                focus:ring-blue-600 focus:border-blue-600 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+            placeholder="91+ ...." th:field="*{phoneNumber}">
+
+          <!-- Duplicate phone number error -->
+          <p th:if="${field == 'phoneNumber'}" th:text="${message}" class="text-red-500 text-sm mt-1"></p>
+        </div>
+
+
+        <!-- Validation error -->
+         <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="text-red-500 text-sm mt-1">
+          </p>
+
+        <!-- About -->
+        <div>
+          <label for="about" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">About You</label>
+          <textarea name="about" id="about" rows="4" maxlength="3000" required
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-600 focus:border-blue-600 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+            placeholder="Tell us about yourself (max 500 words)" th:field="*{about}"></textarea>
+
+          <p th:if="${#fields.hasErrors('about')}" th:errors="*{about}" class="text-red-500 text-sm mt-1"></p>
+
+        </div>
+
+        <!-- Terms -->
+        <div class="flex items-start">
+          <div class="flex items-center h-5">
+            <input id="terms" type="checkbox" required
+              class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-2 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600">
+          </div>
+          <label for="terms" class="ml-2 text-sm font-light text-gray-500 dark:text-gray-300">
+            I accept the <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-400">Terms and
+              Conditions</a>
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit"
+          class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          Create an account</button>
+
+        <!-- Already have account -->
+        <p class="text-sm font-light text-gray-500 dark:text-gray-400 text-center">
+          Already have an account?
+          <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-400">Login here</a>
+        </p>
+      </form>
     </div>
-  </div>
+  </section>
+
+
 
   <!-- ✅ SCRIPT fragment -->
   <div id="script">
@@ -29,4 +127,5 @@
   </div>
 
 </body>
+
 </html>
