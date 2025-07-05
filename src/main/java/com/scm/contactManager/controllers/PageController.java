@@ -16,12 +16,21 @@ import com.scm.contactManager.services.UserService;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 @Controller
+@RequestMapping("/")
 public class PageController {
 
     @Autowired
     private UserService userService;
+
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/home";
+    }
+    
 
     @RequestMapping("/home")
     public String hello(Model model) {
