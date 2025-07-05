@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.scm.contactManager.exception.UserAlreadyExists;
@@ -18,20 +19,27 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public User registerUser(User user) {
         // Check if user already exists
-        if (userRepo.findByEmail(user.getEmail()) != null) {
-            throw new UserAlreadyExists("email" ,"User with this email already exists");
-        }
-        
-        // Save the user to the repository
-        if (userRepo.findByPhoneNumber(user.getPhoneNumber()) != null) {
-            throw new UserAlreadyExists("phoneNumber" ,"User with this phone number already exists");
-        }
+        userRepo.findByEmail(user.getEmail())
+                .ifPresent(existing -> {
+                    throw new UserAlreadyExists("email", "User with this email already exists");
+                });
+
+        userRepo.findByPhoneNumber(user.getPhoneNumber())
+                .ifPresent(existing -> {
+                    throw new UserAlreadyExists("phoneNumber", "User with this phone number already exists");
+                });
 
         String uid = UUID.randomUUID().toString();
         user.setUserId(uid);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(List.of("USER", "ADMIN"));
+
         return userRepo.save(user);
     }
 
@@ -40,7 +48,7 @@ public class UserServiceImpl implements UserService {
         // Update the user information
         User existingUser = userRepo.findById(user.getUserId())
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
-        
+
         existingUser.setName(user.getName());
         existingUser.setEmail(user.getEmail());
         existingUser.setPassword(user.getPassword());
@@ -48,7 +56,7 @@ public class UserServiceImpl implements UserService {
         existingUser.setAbout(user.getAbout());
         existingUser.setProfilePic(user.getProfilePic());
         existingUser.setEnabled(user.isEnabled());
-        existingUser.setEmailVerified(user.isEmailVerified());  
+        existingUser.setEmailVerified(user.isEmailVerified());
         existingUser.setPhoneVerified(user.isPhoneVerified());
         existingUser.setProvider(user.getProvider());
 
@@ -57,7 +65,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByEmail(String email) {
-        return userRepo.findByEmail(email);
+        return userRepo.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found with email: " + email));
     }
 
     @Override
@@ -92,5 +101,5 @@ public class UserServiceImpl implements UserService {
     public boolean isPhoneNumberExists(String phoneNumber) {
         return userRepo.findByPhoneNumber(phoneNumber) != null;
     }
-    
+
 }
