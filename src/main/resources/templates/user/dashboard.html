@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html lang="en"
-      th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::#script})}"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::#script})}">
+
 <head>
-  <title>Dashboard Page</title>
+  <title id="title">Dashboard Page</title>
 </head>
 
-<body>
-
-  <!-- ✅ CONTENT fragment: MUST be outside <body> -->
-  <div id="content">
-    <div class="max-w-screen-md mx-auto py-10 px-4">
+<!-- ✅ CONTENT fragment (outside body, placed inside layout through base.html) -->
+<div id="content">
+  <div class="max-w-screen-md mx-auto py-10 px-4">
     <h1 class="text-3xl font-bold mb-4 text-blue-700">Welcome to User Dashboard</h1>
-      <p class="text-gray-800 text-base">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, ratione!
-      </p>
-    </div>
+    <p class="text-gray-800 text-base">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, ratione!
+    </p>
   </div>
+</div>
 
-  <!-- ✅ SCRIPT fragment -->
-  <div id="script">
-    <script>
-      console.log("about page");
-    </script>
-    <script>
-      console.log("second about page script");
-    </script>
-  </div>
+<!-- ✅ SCRIPT fragment -->
+<div id="script">
+  <script>
+    console.log("dashboard page");
+  </script>
+  <script>
+    console.log("second dashboard script");
+  </script>
+</div>
 
-</body>
 </html>

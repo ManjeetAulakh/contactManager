@@ -20,11 +20,11 @@ public class RootController {
 
     private Logger logger = LoggerFactory.getLogger(RootController.class);
 
-    @ModelAttribute
-    public void addLoggedInUserInformation(Model model, Authentication authentication) {
+    @ModelAttribute("loggedInUser")
+    public User addLoggedInUserInformation(Model model, Authentication authentication) {
 
         if (authentication == null) {
-            return;
+            return null;
         }
 
         System.out.println("Adding logged user in information of model");
@@ -34,14 +34,11 @@ public class RootController {
 
         // fetch user from db
         User user = userService.getUserByEmail(username);
-        if (user == null) {
-            model.addAttribute("loggedInUser", null);
-        } else {
-            System.out.println(user);
-            System.out.println(user.getName());
-            System.out.println(user.getEmail());
-            model.addAttribute("loggedInUser", user);
-        }
+        System.out.println(user);
+        System.out.println(user.getName());
+        System.out.println(user.getEmail());
+        return user;
 
     }
+
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"
-      th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::#script})}"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::#script})}"
+  xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <title>Profile Page</title>
 </head>
@@ -11,12 +11,13 @@
   <!-- ✅ CONTENT fragment: MUST be outside <body> -->
   <div id="content">
     <div class="max-w-screen-md mx-auto py-10 px-4">
-    <h1 class="text-3xl font-bold mb-4 text-blue-700">Welcome to User Profile</h1>
+      <h1 class="text-3xl font-bold mb-4 text-blue-700">Welcome to User Profile</h1>
       <p class="text-gray-800 text-base">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, ratione!
       </p>
-      <h1 data-th-text="${loggedInUser.name}"></h1>
-      <h1 data-th-text="${loggedInUser.email}"></h1>
+      <p th:if="${loggedInUser == null}">No user in model!</p>
+      <p th:if="${loggedInUser != null}" th:text="${loggedInUser.name}">Name here</p>
+      <p th:if="${loggedInUser != null}" th:text="${loggedInUser.email}">Name here</p>
     </div>
   </div>
 
@@ -31,4 +32,5 @@
   </div>
 
 </body>
+
 </html>

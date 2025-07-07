@@ -40,33 +40,33 @@ public class PageController {
         model.addAttribute("youtube", "Inside India");
         model.addAttribute("github", "htpsss");
 
-        return "home";
+        return "global/home";
     }
 
     @RequestMapping("/about")
     public String about() {
-        return "about";
+        return "global/about";
     }
 
     @RequestMapping("/services")
     public String service() {
-        return "services";
+        return "global/services";
     }
 
     @RequestMapping("/contact")
     public String contact() {
-        return "contact";
+        return "global/contact";
     }
 
     @RequestMapping("/register")
     public String signup(Model model) {
         model.addAttribute("userform", new UserForm());
-        return "register";
+        return "auth/register";
     }
 
     @RequestMapping("/login")
     public String login() {
-        return "login";
+        return "auth/login";
     }
 
     @RequestMapping(value = "/do-register", method = RequestMethod.POST)
@@ -74,7 +74,7 @@ public class PageController {
 
         if (result.hasErrors()) {
             // return errors to form
-            return "register";
+            return "auth/register";
         }
 
         User user = new User();
@@ -92,18 +92,18 @@ public class PageController {
         try {
             userService.registerUser(user);
             model.addAttribute("message", "Registration successful! Please login.");
-            return "register-success";
+            return "auth/register-success";
 
         } catch (UserAlreadyExists e) {
             model.addAttribute("userform", userform);
             model.addAttribute("field", e.getFieldName());
             model.addAttribute("message", e.getMessage());
-            return "register";
+            return "auth/register";
 
         } catch (Exception e) {
             model.addAttribute("userform", userform);
             model.addAttribute("generalError", "Something went wrong!");
-            return "register";
+            return "auth/register";
         }
     }
 
