@@ -1,10 +1,13 @@
-<!-- user-sidebar.html -->
-
-<div data-th-fragment="sidebar"
+<div id="user-sidebar" data-th-fragment="sidebar"
      style="top: 84px; height: calc(100vh - 84px);"
-     class="scrollbar-hidden w-72 fixed left-0 z-10 hidden md:block 
-            bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 
-            border-r border-gray-200 dark:border-gray-700 p-6 transition-all duration-300 hover:shadow-lg">
+     class="fixed left-0 top-[84px] w-72 z-50
+       bg-white dark:bg-gray-900
+       bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800
+       border-r border-gray-200 dark:border-gray-700
+       transform -translate-x-full transition-transform duration-300
+       md:translate-x-0 md:block
+       overflow-y-auto no-scrollbar">
+
   <!-- Logo -->
   <div class="flex items-center space-x-3 mb-8 group">
     <div class="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg group-hover:rotate-12 transition-transform">
@@ -19,13 +22,14 @@
   <!-- User Info -->
   <div class="flex items-center gap-3 mb-8 p-3 bg-gray-100 dark:bg-gray-700 rounded-lg">
     <div class="relative">
-      <img src="https://ui-avatars.com/api/?name=User+Name&background=3b82f6&color=fff&rounded=true&size=40"
-           alt="User" class="rounded-full w-10 h-10">
-      <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-gray-700"></span>
+      <img src="https://ui-avatars.com/api/?name=User+Name&background=3b82f6&color=fff&rounded=true&size=40" alt="User"
+        class="rounded-full w-10 h-10">
+      <span
+        class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-gray-700"></span>
     </div>
     <div class="flex-1 min-w-0">
-      <p class="font-medium text-gray-800 dark:text-white truncate">User Name</p>
-      <p class="text-xs text-gray-500 dark:text-gray-400 truncate">user@example.com</p>
+      <p class="font-medium text-gray-800 dark:text-white truncate " th:text="${loggedInUser.name}">User Name</p>
+      <p class="text-xs text-gray-500 dark:text-gray-400 truncate" th:text="${loggedInUser.email}">user@example.com</p>
     </div>
     <button class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
       <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -34,38 +38,38 @@
 
   <!-- Navigation -->
   <nav class="flex flex-col space-y-2 mb-8">
-    <a th:href="@{/user/dashboard}" 
-       class="px-4 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-3 transition-colors"
-       th:classappend="${#httpServletRequest != null and #httpServletRequest.requestURI.endsWith('/user/dashboard')} ? 'bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 font-medium' : ''">
+    <a th:href="@{/user/dashboard}"
+      class="px-4 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-3 transition-colors"
+      th:classappend="${#httpServletRequest != null and #httpServletRequest.requestURI.endsWith('/user/dashboard')} ? 'bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 font-medium' : ''">
       <i class="fa-solid fa-home w-5 text-center"></i>
       <span>Dashboard</span>
     </a>
 
-    <a th:href="@{/user/contacts}" 
-       class="px-4 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-3 transition-colors"
-       th:classappend="${#httpServletRequest != null and #httpServletRequest.requestURI.endsWith('/user/contacts')} ? 'bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 font-medium' : ''">
+    <a th:href="@{/user/contacts}"
+      class="px-4 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-3 transition-colors"
+      th:classappend="${#httpServletRequest != null and #httpServletRequest.requestURI.endsWith('/user/contacts')} ? 'bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 font-medium' : ''">
       <i class="fa-solid fa-address-book w-5 text-center"></i>
       <span>My Contacts</span>
     </a>
 
-    <a th:href="@{/user/add-contact}" 
-       class="px-4 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-3 transition-colors"
-       th:classappend="${#httpServletRequest != null and #httpServletRequest.requestURI.endsWith('/user/add-contact')} ? 'bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 font-medium' : ''">
+    <a th:href="@{/user/add-contact}"
+      class="px-4 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-3 transition-colors"
+      th:classappend="${#httpServletRequest != null and #httpServletRequest.requestURI.endsWith('/user/add-contact')} ? 'bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 font-medium' : ''">
       <i class="fa-solid fa-user-plus w-5 text-center"></i>
       <span>Add Contact</span>
     </a>
 
     <div class="border-t border-gray-200 dark:border-gray-700 my-2"></div>
 
-    <a th:href="@{/user/settings}" 
-       class="px-4 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-3 transition-colors"
-       th:classappend="${#httpServletRequest != null and #httpServletRequest.requestURI.endsWith('/user/settings')} ? 'bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 font-medium' : ''">
+    <a th:href="@{/user/settings}"
+      class="px-4 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-3 transition-colors"
+      th:classappend="${#httpServletRequest != null and #httpServletRequest.requestURI.endsWith('/user/settings')} ? 'bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 font-medium' : ''">
       <i class="fa-solid fa-gear w-5 text-center"></i>
       <span>Settings</span>
     </a>
 
-    <a th:href="@{/logout}" 
-       class="px-4 py-3 rounded-lg hover:bg-red-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 hover:text-red-600 dark:hover:text-red-400 flex items-center gap-3 transition-colors">
+    <a th:href="@{/logout}"
+      class="px-4 py-3 rounded-lg hover:bg-red-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 hover:text-red-600 dark:hover:text-red-400 flex items-center gap-3 transition-colors">
       <i class="fa-solid fa-right-from-bracket w-5 text-center"></i>
       <span>Logout</span>
     </a>
@@ -82,5 +86,15 @@
     </div>
     <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">15.2 GB of 25 GB</p>
   </div>
+
+  <style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+  }
+</style>
 
 </div>

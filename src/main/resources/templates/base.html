@@ -18,6 +18,12 @@
 
 <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
 
+<!-- ✅ Force Sidebar Overlay to Exist for sidebar show in small screen -->
+<!-- Sidebar Overlay (blurs background when sidebar is open) -->
+<div id="sidebar-overlay"
+     class="fixed inset-0 z-40 hidden bg-black/30 backdrop-blur-sm md:hidden transition-all duration-300">
+</div>
+
   <!-- ✅ Navbar -->
   <div th:if="${loggedInUser}">
     <div th:replace="~{user/user-navbar :: user-navbar}"></div>
@@ -41,10 +47,11 @@
 
   <!-- ✅ JS -->
   <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-  <script src="/js/script.js" defer></script>
+  <script src="/js/script.js"></script>
 
   <!-- ✅ Page-specific scripts -->
   <div th:replace="${script}"></div>
+  
 </body>
 
 </html>

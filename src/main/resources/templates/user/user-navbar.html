@@ -1,6 +1,12 @@
 <nav data-th-fragment="user-navbar"
     class="bg-white dark:bg-gray-900 shadow-md fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-700">
     <div class="max-w-screen-xl mx-auto flex items-center justify-between px-6 py-4">
+        
+        <!-- Sidebar Toggle Button (left side) -->
+        <button id="sidebar-toggle-button"
+            class="md:hidden mr-3 p-2 text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none">
+            <i class="fa-solid fa-bars text-xl"></i>
+        </button>
 
         <!-- Logo -->
         <a th:href="@{/home}" class="flex items-center space-x-2">
