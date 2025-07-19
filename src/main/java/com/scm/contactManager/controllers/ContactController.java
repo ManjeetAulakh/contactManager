@@ -26,7 +26,7 @@ public class ContactController {
     @Autowired
     private ContactService contactService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/add-contact" ,method = RequestMethod.GET)
     public String addContactView(Model model){
         ContactForm contactForm = new ContactForm();
         // contactForm.setName("heelo");   // put in value atttribute of input by th atg

@@ -52,7 +52,7 @@
       <span>My Contacts</span>
     </a>
 
-    <a th:href="@{/user/add-contact}"
+    <a th:href="@{/user/contacts/add-contact}"
       class="px-4 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-3 transition-colors"
       th:classappend="${#httpServletRequest != null and #httpServletRequest.requestURI.endsWith('/user/add-contact')} ? 'bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 font-medium' : ''">
       <i class="fa-solid fa-user-plus w-5 text-center"></i>

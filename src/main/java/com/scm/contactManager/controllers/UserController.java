@@ -21,4 +21,12 @@ public class UserController {
     public String showUserProfile(){
         return "user/user-profile";
     }
+
+    // user profile
+    @RequestMapping(value = "/contacts", method = RequestMethod.GET)
+    public String showUserContacts(){
+        return "user/user-contacts";
+    }
+
+
 }
