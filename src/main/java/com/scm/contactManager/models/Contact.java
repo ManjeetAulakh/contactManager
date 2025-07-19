@@ -7,6 +7,8 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -25,7 +27,7 @@ import lombok.Setter;
 public class Contact {
 
     @Id
-    private long id;
+    private String id;
     private String name;
     private String email;
     private String phoneNumber;
@@ -35,7 +37,7 @@ public class Contact {
     @Column(length = 500)
     private String description;
 
-    private String favorite;
+    private boolean favorite;
 
     // ManytoOne: so that multiple contacts can belong to one user
     @ManyToOne
