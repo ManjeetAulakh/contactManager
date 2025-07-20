@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,9 @@ import com.scm.contactManager.models.User;
 import com.scm.contactManager.payloads.ContactForm;
 import com.scm.contactManager.services.ContactService;
 import com.scm.contactManager.services.UserService;
+
+import jakarta.validation.Valid;
+
 
 
 @Controller
@@ -36,7 +40,12 @@ public class ContactController {
     }
 
     @RequestMapping(value = "/process-contact", method=RequestMethod.POST)
-    public String processContact(@ModelAttribute ContactForm contactForm, Authentication authentication) {
+    public String processContact(@Valid @ModelAttribute ContactForm contactForm, 
+    BindingResult result, Authentication authentication) {
+
+        if(result.hasErrors()){
+            return "user/add-contact";
+        }
 
         String username = Helper.getEmailOfLoggedUser(authentication);
 
@@ -52,7 +61,15 @@ public class ContactController {
         contact.setUser(user);
 
         contactService.saveContact(contact);
-        return "redirect:/user/contacts";
+        // return "redirect:/user/contacts";
+        return "redirect:/user/contacts/success";
+
     }
+
+    @RequestMapping("/success")
+    public String addContactSuccess() {
+        return "user/success";
+    }
+    
     
 }

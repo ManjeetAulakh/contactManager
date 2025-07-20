@@ -6,6 +6,7 @@
   <title id="title">Add New Contact</title>
 </head>
 
+
 <div id="content">
   <div
     class="min-h-screen bg-gray-100 dark:bg-gray-900 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))] transition-colors duration-500">
@@ -17,12 +18,14 @@
             <div>
               <h1 class="text-3xl font-bold text-gray-800 dark:text-white">Add New Contact</h1>
               <p class="text-gray-500 dark:text-gray-400 mt-1">Fill in the details to create a new contact</p>
+              
             </div>
           </div>
         </div>
 
         <div class="p-8">
-          <form th:action="@{/user/contacts/process-contact}" method="post" enctype="multipart/form-data" th:object="${contactForm}">
+          <form th:action="@{/user/contacts/process-contact}" method="post" enctype="multipart/form-data"
+            th:object="${contactForm}">
             <div class="flex flex-col items-center mb-8">
               <div class="relative group">
                 <div
@@ -45,15 +48,16 @@
               </div>
             </div>
 
+
             <div class="space-y-6">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="relative">
                   <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Full
                     Name*</label>
                   <div class="relative">
-                    <input type="text" id="name" name="name" required
+                    <input type="text" id="name" name="name"
                       class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
-                      placeholder="John Doe" th:field="*{name}">
+                      placeholder="Username" th:field="*{name}">
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 dark:text-gray-500"
                         viewBox="0 0 20 20" fill="currentColor">
@@ -62,6 +66,9 @@
                       </svg>
                     </div>
                   </div>
+
+                  <p class="text-red-800" data-th-if="${#fields.hasErrors('name')}" data-th-errors="*{name}">Invalid
+                    Name</p>
                 </div>
 
                 <div class="relative">
@@ -70,7 +77,7 @@
                   <div class="relative">
                     <input type="email" id="email" name="email"
                       class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
-                      placeholder="john@example.com" th:field="*{email}">
+                      placeholder="username@example.com" th:field="*{email}">
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 dark:text-gray-500"
                         viewBox="0 0 20 20" fill="currentColor">
@@ -79,6 +86,10 @@
                       </svg>
                     </div>
                   </div>
+
+                  <p class="text-red-800" data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}">Invalid
+                    Name</p>
+
                 </div>
               </div>
 
@@ -87,9 +98,9 @@
                   <label for="phoneNumber" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone
                     Number*</label>
                   <div class="relative">
-                    <input type="tel" id="phoneNumber" name="phoneNumber" required
+                    <input type="tel" id="phoneNumber" name="phoneNumber"
                       class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
-                      placeholder="+1 (555) 123-4567" th:field="*{phoneNumber}">
+                      placeholder="+91 99948-59658" th:field="*{phoneNumber}">
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 dark:text-gray-500"
                         viewBox="0 0 20 20" fill="currentColor">
@@ -98,6 +109,10 @@
                       </svg>
                     </div>
                   </div>
+
+                  <p class="text-red-800" data-th-if="${#fields.hasErrors('phoneNumber')}"
+                    data-th-errors="*{phoneNumber}">Invalid Name</p>
+
                 </div>
 
                 <div class="relative">
@@ -116,6 +131,8 @@
                       </svg>
                     </div>
                   </div>
+                  <p class="text-red-800" data-th-if="${#fields.hasErrors('address')}" data-th-errors="*{address}">
+                    Invalid Name</p>
                 </div>
               </div>
 
@@ -178,8 +195,7 @@
                     <div class="md:col-span-6">
                       <input type="url" name="facebookUrl"
                         class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
-                        placeholder="https://facebook.com/username" th:field="*{facebookUrl}"
-                        >
+                        placeholder="https://facebook.com/username" th:field="*{facebookUrl}">
                     </div>
                   </div>
                 </div>
